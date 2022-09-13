@@ -1,5 +1,4 @@
 # Import from SQLAlchemy
-from itertools import count
 from flask_sqlalchemy import SQLAlchemy
 
 # flask_migrate imports - sends models to db as tables
@@ -39,7 +38,7 @@ class User(db.Model, UserMixin):
     g_auth_verify = db.Column(db.Boolean, default = False)
     token = db.Column(db.String, default = '', unique = True)
     date_created = db.Column(db.DateTime, nullable = False, default = datetime.utcnow )
-    drone = db.relationship('Drone', backref = 'owner', lazy = True)
+    location = db.relationship('Location', backref = 'owner', lazy = True)
 
     def __init__(self, email, first_name = '', last_name = '', id = '', password = '', token = '', g_auth_verify = False):
         self.id = self.set_id()
@@ -66,7 +65,7 @@ class User(db.Model, UserMixin):
 
 
 
-class Drone(db.Model):
+class Location(db.Model):
     id = db.Column(db.String, primary_key = True)
     tested_positive = db.Column(db.Numeric(precision=10, scale=2))
     country = db.Column(db.String(150), nullable = True)
@@ -94,10 +93,10 @@ class Drone(db.Model):
 
 
 
-class DroneSchema(ma.Schema):
+class LocationSchema(ma.Schema):
     class Meta:
         fields = ['id', 'tested_positive', 'country', 'state', 'city', 'deaths', 'series']
 
-drone_schema = DroneSchema()
-drones_schema = DroneSchema(many = True)
+location_schema = LocationSchema()
+locations_schema = LocationSchema(many = True)
 

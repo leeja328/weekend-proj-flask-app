@@ -4,7 +4,7 @@ import secrets
 
 from flask import request, jsonify, json
 
-from marvel_inventory.models import User
+from covid_inventory.models import User
 
 import decimal
 

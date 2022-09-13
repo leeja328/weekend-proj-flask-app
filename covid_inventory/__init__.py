@@ -9,13 +9,13 @@ from config import Config
 from flask_migrate import Migrate
 
 # Import Models
-from marvel_inventory.models import db as root_db, login_manager, ma
+from covid_inventory.models import db as root_db, login_manager, ma
 
 # Flask-Cors import - Cross Origin Resource Sharing - future proofing api requests
 from flask_cors import CORS
 
 # Helpers Import for JSONEncoder
-from marvel_inventory.helpers import JSONEncoder
+from covid_inventory.helpers import JSONEncoder
 
 app = Flask(__name__)
 
